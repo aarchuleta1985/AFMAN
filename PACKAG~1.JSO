@@ -1,0 +1,50 @@
+{
+  "name": "afman-hazmat-reference",
+  "version": "1.0.0",
+  "description": "AFMAN 24-604 Hazmat Reference - an offline, client-side reference tool. Not an official or authoritative source; for quick reference only.",
+  "main": "main.js",
+  "author": "mando",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis msi --publish never",
+    "dist:exe": "electron-builder --win nsis --publish never",
+    "dist:msi": "electron-builder --win msi --publish never"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.mando.afmanhazmatreference",
+    "productName": "AFMAN Hazmat Reference",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*"
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "msi", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AFMAN Hazmat Reference"
+    },
+    "msi": {
+      "shortcutName": "AFMAN Hazmat Reference",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
